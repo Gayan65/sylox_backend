@@ -10,7 +10,7 @@ const db_url = process.env.DB_URL;
 // Middleware to parse JSON body
 app.use(express.json());
 
-app.use("/contact", contactRouter);
+app.use("/api/contact", contactRouter);
 
 mongoose
     .connect(db_url)
