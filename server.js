@@ -17,7 +17,7 @@ mongoose
     .then(() => {
         //server
         app.listen(port, () => {
-            console.log(`Example app listening on port ${port}`);
+            console.log(`Sylox backend runs on port ${port}`);
         });
     })
     .catch((err) => console.log(err));

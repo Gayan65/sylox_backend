@@ -6,7 +6,7 @@ export const createContact = async (req, res) => {
     const { name, email, phone, message } = req.body;
 
     try {
-        await sendMail(email, name);
+        await sendMail(email, name, phone, message);
 
         const contact = await ContactForm.create({
             name,
