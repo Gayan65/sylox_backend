@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
 import contactRouter from "./routes/contact_form.js";
@@ -6,6 +7,17 @@ import contactRouter from "./routes/contact_form.js";
 const app = express();
 const port = process.env.PORT;
 const db_url = process.env.DB_URL;
+
+app.use(
+    cors({
+        origin: [
+            "http://localhost:3000", // local dev
+            "https://your-frontend-domain.com", // replace with your deployed frontend domain if any
+        ],
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        credentials: true,
+    })
+);
 
 // Middleware to parse JSON body
 app.use(express.json());
