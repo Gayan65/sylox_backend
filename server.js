@@ -10,10 +10,7 @@ const db_url = process.env.DB_URL;
 
 app.use(
     cors({
-        origin: [
-            "http://localhost:3000", // local dev
-            "https://your-frontend-domain.com", // replace with your deployed frontend domain if any
-        ],
+        origin: ["http://localhost:3000", "http://13.60.197.98:3000"],
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
     })
