@@ -1,0 +1,39 @@
+name: Deploy Node Application
+
+on:
+    push:
+        branches: ["main"]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+            #BACKEND
+            - name: Login Dockerhub
+              env:
+                  DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+                  DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+              run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+            - name: Build the Docker image
+              run: docker build -t gayan65/sylox_backend:latest .
+
+            - name: Push to docker hub
+              run: docker push gayan65/sylox_backend:latest
+
+    deploy:
+        needs: build
+        runs-on: self-hosted
+        steps:
+            - name: Pull image from docker hub
+              run: docker pull gayan65/sylox_backend:latest
+            - name: Delete old container
+              run: docker rm -f gayan65/sylox_backend
+            - name: Run Docker Container
+              run: docker run -d -p 4000:4000 --name nodejs-app-container \
+                  -e DB_URL="${{ secrets.DB_URL }}" \
+                  -e PORT="${{ secrets.PORT }}" \
+                  -e EMAIL_PASS="${{ secrets.EMAIL_PASS }}" \
+                  gayan65/sylox_backend
