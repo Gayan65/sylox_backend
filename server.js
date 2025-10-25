@@ -25,7 +25,7 @@ mongoose
     .connect(db_url)
     .then(() => {
         //server
-        app.listen(port, () => {
+        app.listen(port, "0.0.0.0", () => {
             console.log(`Sylox backend runs on port ${port}`);
         });
     })
