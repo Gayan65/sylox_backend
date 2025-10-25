@@ -10,7 +10,7 @@ const db_url = process.env.DB_URL;
 
 app.use(
     cors({
-        origin: ["http://localhost:3000", "http://13.60.197.98:3000"],
+        origin: ["https://sylox.fi", "https://www.sylox.fi"],
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
     })
