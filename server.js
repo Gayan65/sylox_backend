@@ -16,7 +16,7 @@ app.use(
     })
 );
 
-// Middleware to parse JSON body
+// Middleware to parse JSON body.
 app.use(express.json());
 
 app.use("/api/contact", contactRouter);
