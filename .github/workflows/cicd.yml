@@ -35,8 +35,10 @@ jobs:
 
             - name: Run Docker Container
               run: |
-                  docker run -d -p 4000:4000 \
+                  docker run -d \
                     --name nodejs-app-container \
+                    --network sylox-network \
+                    -p 4000:4000 \
                     -e DB_URL="${{ secrets.DB_URL }}" \
                     -e PORT="${{ secrets.PORT }}" \
                     -e EMAIL_PASS="${{ secrets.EMAIL_PASS }}" \
