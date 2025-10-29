@@ -22,14 +22,14 @@ export const sendMail = async (emailId, nameId, phoneNumber, userMessage) => {
             port: 465,
             secure: true,
             auth: {
-                user: "gayan.sylox.solutions@gmail.com",
+                user: "info@sylox.fi",
                 pass: process.env.EMAIL_PASS,
             },
         });
 
         // 1️⃣ Email to the user (confirmation)
         await transporter.sendMail({
-            from: '"Sylox Solutions" <gayan.sylox.solutions@gmail.com>',
+            from: '"Sylox Solutions" <info@sylox.fi>',
             to: emailId,
             subject: "Viesti vastaanotettu /Message received ",
             html: htmlMessages.fi + "<hr/>" + htmlMessages.en,
@@ -45,8 +45,8 @@ export const sendMail = async (emailId, nameId, phoneNumber, userMessage) => {
         `;
 
         const info = await transporter.sendMail({
-            from: '"Sylox Website" <gayan.sylox.solutions@gmail.com>',
-            to: "gayan.sylox.solutions@gmail.com",
+            from: '"Sylox Website" <info@sylox.fi>',
+            to: "info@sylox.fi",
             subject: `New Contact Submission from ${nameId}`,
             html: adminMessage,
         });
